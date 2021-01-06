@@ -2,8 +2,10 @@ package io.github.ykws.example.android.githubexplore.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
+import io.github.ykws.example.android.githubexplore.data.Repository
 import io.github.ykws.example.android.githubexplore.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -17,10 +19,15 @@ class MainActivity : AppCompatActivity() {
     setContentView(binding.root)
 
     viewModel = ViewModelProvider(this).get(ExploreViewModel::class.java)
+
+    // RecyclerView
+    val adapter = RepositoryRowAdapter { repository -> adapterOnClick(repository) }
+    binding.recyclerView.adapter = adapter
     viewModel.repositories.observe(this) {
-      binding.textView.text = it.stream().findFirst().get().name
+      adapter.submitList(it as MutableList<Repository>)
     }
 
+    // SearchView
     binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
       override fun onQueryTextSubmit(query: String?): Boolean {
         query?.let { viewModel.search(it) }
@@ -31,5 +38,9 @@ class MainActivity : AppCompatActivity() {
         return false
       }
     })
+  }
+
+  private fun adapterOnClick(repository: Repository) {
+    Log.d("Test", repository.name)
   }
 }
