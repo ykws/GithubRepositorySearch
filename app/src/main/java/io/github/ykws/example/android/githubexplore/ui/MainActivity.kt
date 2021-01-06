@@ -2,6 +2,7 @@ package io.github.ykws.example.android.githubexplore.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import io.github.ykws.example.android.githubexplore.databinding.ActivityMainBinding
 
@@ -19,6 +20,16 @@ class MainActivity : AppCompatActivity() {
     viewModel.repositories.observe(this) {
       binding.textView.text = it.stream().findFirst().get().name
     }
-    binding.button.setOnClickListener { viewModel.search("ykws") }
+
+    binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+      override fun onQueryTextSubmit(query: String?): Boolean {
+        query?.let { viewModel.search(it) }
+        return false
+      }
+
+      override fun onQueryTextChange(newText: String?): Boolean {
+        return false
+      }
+    })
   }
 }
