@@ -1,4 +1,4 @@
-package io.github.ykws.example.android.githubexplore
+package io.github.ykws.example.android.githubexplore.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

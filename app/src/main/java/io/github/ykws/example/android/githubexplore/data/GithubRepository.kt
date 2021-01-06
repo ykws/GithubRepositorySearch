@@ -1,4 +1,4 @@
-package io.github.ykws.example.android.githubexplore
+package io.github.ykws.example.android.githubexplore.data
 
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
