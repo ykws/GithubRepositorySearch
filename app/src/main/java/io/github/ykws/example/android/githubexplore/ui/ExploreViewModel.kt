@@ -14,9 +14,13 @@ class ExploreViewModel : ViewModel() {
   private val _repositories = MutableLiveData<List<Repository>>()
   val repositories: LiveData<List<Repository>> get() = _repositories
 
-  fun search(user: String) {
+  private val page: Int = 0
+
+  fun search(query: String) {
     viewModelScope.launch {
-      _repositories.value = repository.findByUser(user)
+      repository.findByQuery(query, page)?.let {
+        _repositories.value = it.items
+      }
     }
   }
 }
