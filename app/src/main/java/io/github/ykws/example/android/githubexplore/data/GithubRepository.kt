@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 class GithubRepository {
-  suspend fun findByQuery(query: String, page: Int): SearchRepositoriesResult? =
+  suspend fun findByQuery(query: String, page: Int = 1): SearchRepositoriesResult? =
     Retrofit.Builder()
       .baseUrl("https://api.github.com")
       .addConverterFactory(MoshiConverterFactory.create())

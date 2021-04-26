@@ -42,5 +42,6 @@ class MainActivity : AppCompatActivity() {
 
   private fun adapterOnClick(repository: Repository) {
     Log.d("Test", repository.name)
+    viewModel.load()
   }
 }
