@@ -17,6 +17,7 @@ class RepositoryRowAdapter(private val onClick: (Repository) -> Unit) :
     RecyclerView.ViewHolder(view) {
     private val name: TextView = view.findViewById(R.id.name)
     private val description: TextView = view.findViewById(R.id.description)
+    private val language: TextView = view.findViewById(R.id.language)
     private var currentRepository: Repository? = null
 
     init {
@@ -31,6 +32,7 @@ class RepositoryRowAdapter(private val onClick: (Repository) -> Unit) :
       currentRepository = repository
       name.text = repository.name
       description.text = repository.description
+      language.text = repository.language
     }
   }
 
