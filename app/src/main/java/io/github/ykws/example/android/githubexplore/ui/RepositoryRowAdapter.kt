@@ -15,7 +15,8 @@ class RepositoryRowAdapter(private val onClick: (Repository) -> Unit) :
 
   class RepositoryViewHolder(view: View, val onClick: (Repository) -> Unit) :
     RecyclerView.ViewHolder(view) {
-    private val textView: TextView = view.findViewById(R.id.name)
+    private val name: TextView = view.findViewById(R.id.name)
+    private val description: TextView = view.findViewById(R.id.description)
     private var currentRepository: Repository? = null
 
     init {
@@ -28,7 +29,8 @@ class RepositoryRowAdapter(private val onClick: (Repository) -> Unit) :
 
     fun bind(repository: Repository) {
       currentRepository = repository
-      textView.text = repository.name
+      name.text = repository.name
+      description.text = repository.description
     }
   }
 
